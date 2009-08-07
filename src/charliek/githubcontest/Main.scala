@@ -11,14 +11,13 @@ object Main {
     val watch = new File("data", "data.txt")
     val guess = new File("data", "test.txt")
     val out = new File("results.txt")
-    var pop = new ZeroDict[String]()
+    val pop = new ZeroDict[String]()
     Source.fromFile(watch).getLines.foreach(line => {
       val cols = line.trim.split(":")
       val (user, watched) = ( cols(0), cols(1) )
       pop(watched) = pop(watched) + 1
     })
-    val top10 = pop.toList.sort{(a,b) => a._2 > b._2}.slice(0, 10).map(_._1).reverse
-    pop = null
+    val top10 = pop.toList.sort{(a,b) => a._2 > b._2}.slice(0, 10).map(_._1)
     var w : FileWriter = null
     try {
       w = new FileWriter(out)
