@@ -17,7 +17,7 @@ object Main {
       val (user, watched) = ( cols(0), cols(1) )
       pop(watched) = pop(watched) + 1
     })
-    val top10 = pop.toList.sort{(a,b) => a._2 > b._2}.slice(0, 10).map(_._1)
+    val top10 = pop.toList.sort{(a,b) => a._2 > b._2}.slice(0, 10).map(_._1).reverse
     pop = null
     var w : FileWriter = null
     try {
